@@ -9,24 +9,30 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header><h1>Todos</h1></header>
+    <header>
+        <h1>Todos</h1>
+    </header>
+
     <main>
+
     <ul>
     <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
+            <li class='todo-item' data-id='<%=el._id%>'>
+                <button class='todo-button <%= el.completed === true ? 'completed' : 'not'%>'></button>
+                <span class='todo <%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <span class='todo-assignment <%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <span class='delete-button'> Delete </span>
             </li>
     <% }) %>    
     </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+    <form class="create-todo" action="/todos/createTodo" method='POST'>
+        <input class="todo-input" type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <input class="submit" type="submit">
     </form>
-
+    
+    <h2 class="tasks-left"><%= user.userName %> has <%= left %> things left to do.</h2>
+    
     </main>
 
     <footer>
