@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -20,7 +21,9 @@
             <li class='todo-item' data-id='<%=el._id%>'>
                 <button class='todo-button <%= el.completed === true ? 'completed' : 'not'%>'></button>
                 <span class='todo <%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='todo-assignment <%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <span class='todo-assignment'>
+                    <i class="fas fa-user"></i> <%= el.assignment || 'none'%>
+                </span>
                 <span class='delete-button'> Delete </span>
             </li>
     <% }) %>    
