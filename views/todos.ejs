@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>QuickTeam</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet"></head>
 <body>
     <header>
-        <h1>Todos</h1>
+        <h1>QuickTeam</h1>
     </header>
 
     <main>
@@ -22,24 +24,26 @@
                 <button class='todo-button <%= el.completed === true ? 'completed' : 'not'%>'></button>
                 <span class='todo <%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='todo-assignment'>
-                    <i class="fas fa-user"></i> <%= el.assignment || 'none'%>
+                    <i class="fas fa-user"></i> <%= user.userName || 'none'%>
                 </span>
-                <span class='delete-button'> Delete </span>
+                <span class='delete-button fas fa-trash-alt'></span>
             </li>
     <% }) %>    
     </ul>
 
-    <form class="create-todo" action="/todos/createTodo" method='POST'>
-        <input class="todo-input" type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input class="submit" type="submit">
-    </form>
-    
-    <h2 class="tasks-left"><%= user.userName %> has <%= left %> things left to do.</h2>
-    
     </main>
 
+    <div class="input-footer">
+        <form class="create-todo" action="/todos/createTodo" method='POST'>
+            <input class="todo-input" type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <input class="submit" type="submit">
+        </form>
+        
+        <h2 class="tasks-left"><%= user.userName %> has <%= left %> things left to do.</h2>
+        </div>
+
     <footer>
-        <a href="/logout">Logout</a>
+        <a class="logout" href="/logout">Logout</a>
     </footer>
 
     <script src="js/main.js"></script>

@@ -19,7 +19,7 @@ body {
     margin: auto;
     font-size: 1.6rem;
     color: #242423;
-    background-color: white;
+    background-color: #F6F5F4;
 }
 
 body * {
@@ -29,10 +29,18 @@ body * {
 
 /******* HEADER *******/
 header {
-    font-size: 2em;
     grid-area: header;
     align-self: center;
     justify-self: center;
+    margin: 20px 0;
+}
+header h1 {
+    font-size: 2.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: #EFB61A;
+    text-decoration: underline overline #333533;
 }
   
 
@@ -46,16 +54,19 @@ main {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
 }
 
 /* TODO Item */
 ul {
     width: 100%;
-    margin-top: 40%;
+    border-radius: 5px;
 }
 
 .todo-item {
-    height: 33%;
+    height: 3rem;
     width: 100%;
     display: grid;
     grid-template-areas: "button todo assignment delete";
@@ -63,7 +74,6 @@ ul {
     grid-template-columns: auto 1fr auto auto;
     align-items: center;
     align-content: center;
-    border-radius: 3px;
     padding: 3px;
     background-color: #FCEDC5;
 }
@@ -81,6 +91,7 @@ ul {
     border: 2px solid #786F68;
     background-color: #F6F5F4;
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .todo-button.completed{
@@ -109,15 +120,27 @@ ul {
     justify-self: end;
     margin-right: 5px;
     font-size: 1rem;
+    color: #786F68;
+    cursor: pointer;
 }
 
+/* Input Footer */
+.input-footer {
+    grid-area: footer;
+    position: sticky;
+    bottom: 0;
+    background-color: #F6F5F4;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
 
 /* Add Note */
 .create-todo {
     display: flex;
     align-items: center;
     padding: 3px;
-    margin: 40px 10px 10px 10px;
+    margin: 20px 10px 10px 10px;
     height: 40px;
 }
 
@@ -130,18 +153,29 @@ ul {
         width: 100%;
         padding-left: 5px;
         font-size: 1.2rem;
+        border: 2px solid #786F68;
+        border-radius: 5px;
 
     }
 
     .create-todo .submit {
-        width: 60px
+        width: 60px;
+        border: 2px solid #786F68;
+        border-radius: 5px;
+        background-color: #F6D579;
+    }
+
+    .create-todo .submit:hover {
+        background-color: #F6B579;
+        border-color: #786F78;
+        cursor: pointer;
     }
 
 
 /* Tasks Left */
 .tasks-left {
-    margin-top: auto;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
 }
 
 /******* FOOTER *******/
@@ -150,4 +184,14 @@ footer {
     align-self: center;
     justify-self: center;
     margin: .5rem 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+.logout {
+    color: #F3C853;
+    font-size: 1rem;
+}
+.logout:hover {
+    color: #EFB61A;
 }
