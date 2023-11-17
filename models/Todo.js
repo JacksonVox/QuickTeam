@@ -9,6 +9,10 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  adminId: {
+    type: String,
+    required: true,
+  },
   completed: {
     type: Boolean,
     required: true,
@@ -17,9 +21,9 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  adminId: {
+  assignedToId: {
     type: String,
-    required: true,
+    required: false,
   }
 })
 
