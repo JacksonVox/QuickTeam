@@ -1,6 +1,7 @@
 const passport = require('passport')
 const validator = require('validator')
-const User = require('../models/User')
+const { User } = require('../models/User')
+const { SubUser } = require('../models/User')
 
  exports.getLogin = (req, res) => {
     if (req.user) {
@@ -71,7 +72,7 @@ const User = require('../models/User')
     const user = new User({
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
   
     User.findOne({$or: [
@@ -91,6 +92,29 @@ const User = require('../models/User')
           }
           res.redirect('/todos')
         })
+      })
+    })
+  }
+
+  exports.getAddSubUser = (req, res)=>{
+    res.render('addSubUser', {
+      adminId: req.params.adminId
+    })
+  }
+
+  exports.postAddSubUser = (req, res)=>{
+    const subUser = new SubUser({
+      userName: req.body.userName,
+      adminId: req.params.adminId
+    })
+
+    subUser.save((err) => {
+      if (err) { return next(err) }
+      req.logIn(subUser, (err) => {
+        if (err) {
+          return next(err)
+        }
+        res.redirect('/todos')
       })
     })
   }

@@ -5,13 +5,21 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   completed: {
     type: Boolean,
     required: true,
   },
-  userId: {
+  completedByUserId: {
     type: String,
-    required: true
+    required: false,
+  },
+  adminId: {
+    type: String,
+    required: true,
   }
 })
 

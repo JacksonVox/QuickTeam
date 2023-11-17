@@ -2,15 +2,23 @@ const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-  userName: { type: String, unique: true },
+  userName: { type: String, unique: false },
   email: { type: String, unique: true },
-  password: String
+  password: String,
+  adminId: { type: String, unique: false },
+  isAdmin: Boolean
+})
+
+const SubUserSchema = new mongoose.Schema({
+  userName: { type: String, unique: false },
+  adminId: { type: String, unique: false },
+  isAdmin: Boolean
 })
 
 
 // Password hash middleware.
  
- UserSchema.pre('save', function save(next) {
+UserSchema.pre('save', function save(next) {
   const user = this
   if (!user.isModified('password')) { return next() }
   bcrypt.genSalt(10, (err, salt) => {
@@ -18,9 +26,21 @@ const UserSchema = new mongoose.Schema({
     bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) { return next(err) }
       user.password = hash
+      if (!user.adminId) {
+        user.adminId = user._id; // Set adminId
+      }
       next()
     })
   })
+})
+
+//Set adminId on SubUser middleware.
+SubUserSchema.pre('save', function save(next) {
+  const user = this
+      if (!user.adminId) {
+        user.adminId = user._id; // Set adminId
+      }
+      next()
 })
 
 
@@ -33,4 +53,9 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
 }
 
 
-module.exports = mongoose.model('User', UserSchema)
+
+
+const User = mongoose.model('User', UserSchema);
+const SubUser = mongoose.model('SubUser', SubUserSchema);
+
+module.exports = { User, SubUser };

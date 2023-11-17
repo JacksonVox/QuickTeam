@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose')
-const User = require('../models/User')
+const { User, SubUser } = require('../models/User')
 
 module.exports = function (passport) {
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -24,10 +24,14 @@ module.exports = function (passport) {
   
 
   passport.serializeUser((user, done) => {
-    done(null, user.id)
-  })
-
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
-  })
+    done(null, { id: user.id, type: user instanceof SubUser ? 'SubUser' : 'User' });
+  });
+  
+  passport.deserializeUser((data, done) => {
+    if (data.type === 'User') {
+      User.findById(data.id, (err, user) => done(err, user));
+    } else if (data.type === 'SubUser') {
+      SubUser.findById(data.id, (err, subUser) => done(err, subUser));
+    }
+  });
 }
