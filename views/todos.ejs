@@ -39,12 +39,12 @@
             <input class="submit" type="submit">
         </form>
         
-        <h2 class="tasks-left"><%= user.userName %> has <%= left %> things left to do.</h2>
+        <h2 class="tasks-left">Hello <span style="font-weight: bold;"><%= user.userName %></span>! You have <%= left %> things left to do.</h2>
         </div>
 
     <footer>
         <!-- change this to share link -->
-        <a href="/addSubUser/<%= user.adminId %>">Add Sub User</a>
+        <a href="/addSubUser/<%= user.adminId %>/<%= passKey %>">Add Sub User</a>
         <a class="logout" href="/logout">Logout</a>
     </footer>
 

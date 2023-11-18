@@ -1,12 +1,14 @@
 const Todo = require('../models/Todo')
+const { v4: uuidv4 } = require('uuid')
 
 module.exports = {
     getTodos: async (req,res)=>{
         console.log(req.user)
+        const passKey =  uuidv4();
         try{
             const todoItems = await Todo.find({adminId:req.user.adminId})
             const itemsLeft = await Todo.countDocuments({assignedToId:req.user.id,completed: false})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, adminId: req.user.adminId})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, adminId: req.user.adminId, passKey: passKey})
         }catch(err){
             console.log(err)
         }

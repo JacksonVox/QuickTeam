@@ -1,0 +1,44 @@
+/* REM */
+html {
+    font: 62.5%; /*1 rem = 10 px */
+}
+
+
+/*********** BODY *************/
+
+
+body {
+    display: grid;
+    grid-template-areas: 
+      "header header header"
+      "main main main"
+      "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    max-width: 400px;
+    margin: auto;
+    font-size: 1.6rem;
+    color: #242423;
+    background-color: #F6F5F4;
+}
+
+body * {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+/******* HEADER *******/
+header {
+    grid-area: header;
+    align-self: center;
+    justify-self: center;
+    margin: 20px 0;
+}
+header h1 {
+    font-size: 2.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: #EFB61A;
+    text-decoration: underline overline #333533;
+}

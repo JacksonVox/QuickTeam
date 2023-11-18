@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Add Team Member</title>
 </head>
 <body>
-    <% if (locals.messages.errors) { %>
-        <% messages.errors.forEach( el => { %>
-            <div class="alert alert-danger"><%= el.msg %></div>
-        <% }) %>    
-    <% } %>
-    <form action="/addSubUser/<%= adminId %>" method="POST">
-        <input type="text" name="userName" placeholder="User Name">
-        <input type="submit">
-    </form>
+    <header>
+        <h1>QuickTeam</h1>
+    </header>
+    <main>
+        <h2>Welcome to QuickTeam!</h2>
+        <h4>Enter your name below to join *****'s team.
+            <br>
+            You can always log in with the link *******'s sent you.
+        </h4>
+        <form action="/addSubUser/<%= adminId %>/<%= passKey %>" method="POST">
+            <input type="text" name="userName" placeholder="User Name">
+            <input type="submit">
+        </form>
+    </main>
 </body>
 </html>

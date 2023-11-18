@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
 
 const SubUserSchema = new mongoose.Schema({
   userName: { type: String, unique: false },
+  passKey: { type: String, unique: true },
   adminId: { type: String, unique: false },
   isAdmin: Boolean
 })

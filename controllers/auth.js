@@ -1,5 +1,6 @@
 const passport = require('passport')
 const validator = require('validator')
+const { v4: uuidv4 } = require('uuid')
 const { User } = require('../models/User')
 const { SubUser } = require('../models/User')
 
@@ -96,16 +97,33 @@ const { SubUser } = require('../models/User')
     })
   }
 
-  exports.getAddSubUser = (req, res)=>{
-    res.render('addSubUser', {
-      adminId: req.params.adminId
-    })
+  exports.getAddSubUser = (req, res, next) => {
+    const userPassKey = req.params.passKey;
+    SubUser.findOne(
+      {passKey: userPassKey},
+      (err, existingUser) => {
+      if (err) { return next(err) }
+      if (existingUser) {
+        req.logIn(existingUser, (err) => {
+          if (err) {
+            return next(err)
+          }
+          res.redirect('/todos')
+        })
+      }else {
+        res.render('addSubUser', {
+          adminId: req.params.adminId,
+          passKey: req.params.passKey
+        });
+      }
+    });
   }
 
   exports.postAddSubUser = (req, res)=>{
     const subUser = new SubUser({
       userName: req.body.userName,
-      adminId: req.params.adminId
+      adminId: req.params.adminId,
+      passKey: req.params.passKey
     })
 
     subUser.save((err) => {
