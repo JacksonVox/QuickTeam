@@ -99,21 +99,30 @@ const { SubUser } = require('../models/User')
 
   exports.getAddSubUser = (req, res, next) => {
     const userPassKey = req.params.passKey;
-    SubUser.findOne(
-      {passKey: userPassKey},
-      (err, existingUser) => {
+    const adminId = req.params.adminId; // Define adminId here
+    let adminName;
+
+    User.findOne({_id: adminId}, (err, user) => {
+      if (err) {
+        console.error(err);
+      } else {
+        adminName = user.userName;
+      }
+    });
+
+    SubUser.findOne({passKey: userPassKey}, (err, existingUser) => {
       if (err) { return next(err) }
+
       if (existingUser) {
         req.logIn(existingUser, (err) => {
-          if (err) {
-            return next(err)
-          }
+          if (err) { return next(err) }
           res.redirect('/todos')
         })
-      }else {
+      } else {
         res.render('addSubUser', {
-          adminId: req.params.adminId,
-          passKey: req.params.passKey
+          adminId: adminId,
+          passKey: userPassKey,
+          adminName: adminName
         });
       }
     });
