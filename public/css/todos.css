@@ -50,7 +50,7 @@ main {
     align-self: center;
     justify-self: center;
     height: 100%;
-    width: 95%;
+    width: 90%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -116,6 +116,24 @@ ul {
 .completed{
     color: #8F857D;
     text-decoration: line-through #8F857D;
+}
+
+/* TODO Assignment */
+.assign-user {
+    grid-area: assignment;
+    width: fit-content;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem;
+    color: #8F857D;
+    border: none;
+    border-radius: 5px;
+    background-color: inherit;
+    padding: 5px;
+    cursor: pointer;
+}
+.assign-user:focus {
+    outline: none;
+    border-color: #F6B579;
 }
 
 /* Delete Button */

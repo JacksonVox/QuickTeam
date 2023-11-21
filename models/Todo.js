@@ -24,6 +24,10 @@ const TodoSchema = new mongoose.Schema({
   assignedToId: {
     type: String,
     required: false,
+  },
+  assignedToName: {
+    type: String,
+    required: false,
   }
 })
 

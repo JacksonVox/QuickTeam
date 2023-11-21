@@ -1,5 +1,7 @@
-const Todo = require('../models/Todo')
-const { v4: uuidv4 } = require('uuid')
+const Todo = require('../models/Todo');
+const { v4: uuidv4 } = require('uuid');
+const { User } = require('../models/User');
+const { SubUser } = require('../models/User');
 
 module.exports = {
     getTodos: async (req,res)=>{
@@ -8,7 +10,10 @@ module.exports = {
         try{
             const todoItems = await Todo.find({adminId:req.user.adminId})
             const itemsLeft = await Todo.countDocuments({assignedToId:req.user.id,completed: false})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, adminId: req.user.adminId, passKey: passKey})
+            const teamUsers = await SubUser.find({adminId: req.user.adminId})
+            const adminUser = await User.findById(req.user.adminId)
+            const allUsers = [adminUser, ...teamUsers]
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, adminId: req.user.adminId, teamUsers: allUsers, passKey: passKey})
         }catch(err){
             console.log(err)
         }
@@ -52,6 +57,24 @@ module.exports = {
             res.json('Deleted It')
         }catch(err){
             console.log(err)
+        }
+    },
+    getUsersByAdminId: async (req, res)=>{
+        try{
+            const userTeam = await SubUser.find({adminId: req.user.adminId})
+            res.json(userTeam)
+        }catch(err){
+            console.error(err)
+            res.status(500).send('Server Error')
+        }
+    },
+    assignTodo: async (req, res)=>{
+        try{
+            await Todo.findByIdAndUpdate(req.params.todoId, {assignedToId: req.params.userId})
+            res.json({status: 'OK'})
+        }catch(err){
+            console.error(err)
+            res.status(500).send('Server Error')
         }
     }
 }    
