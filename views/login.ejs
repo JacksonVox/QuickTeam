@@ -9,6 +9,11 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <h1>QuickTeam</h1>
+    </header>
+    <main>
+        
     <% if (locals.messages.errors) { %>
         <% messages.errors.forEach( el => { %>
             <div class="alert alert-danger"><%= el.msg %></div>
@@ -19,10 +24,17 @@
             <div class="alert alert-danger"><%= el.msg %></div>
         <% }) %>    
     <% } %>
-    <form action="/login" method="POST">
+    <form class="form-full" action="/login" method="POST">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
-        <input type="submit">
+        <input class="btn-1" type="submit">
     </form>
+
+    <div class="flex-col">
+        <span>Don't have an account?</span>
+        <a class="btn-2" href="/signup">Sign Up</a>
+    </div>
+
+    </main>
 </body>
 </html>

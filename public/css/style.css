@@ -1,6 +1,6 @@
 /* REM */
 html {
-    font: 62.5%; /*1 rem = 10 px */
+    font-size: 62.5%; /*1 rem = 10 px */
 }
 
 
@@ -10,16 +10,17 @@ html {
 body {
     display: grid;
     grid-template-areas: 
-      "header header header"
-      "main main main"
-      "footer footer footer";
+      "header"
+      "main"
+      "footer";
     grid-template-rows: auto 1fr auto;
     height: 100vh;
     max-width: 400px;
     margin: auto;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: #242423;
     background-color: #F6F5F4;
+    font-family: 'Roboto', sans-serif;
 }
 
 body * {
@@ -35,7 +36,7 @@ header {
     margin: 20px 0;
 }
 header h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: italic;
@@ -45,3 +46,176 @@ header h1 {
 
 /******* MAIN *******/
 
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+}
+    main > * {
+        width: 100%;
+        text-align: center;
+    }
+
+    main h2 {
+        margin: 40px 0;
+    }
+
+    main h2 {
+        font-size: 2.2rem;
+    }
+
+    main p {
+        width: 80%;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 0 20px;
+    }
+
+
+
+
+/******* FORM *******/
+
+form {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 80%;
+    margin-top: 15px;
+}
+
+    form * {
+        height: 95%;
+    }
+
+    form input {
+        width: 100%;
+        border: 2px solid #786F68;
+        border-radius: 5px;
+    }
+
+    form .text {
+        padding-left: 5px;
+        font-size: 1.6rem;
+        margin-right: 10px;
+    }
+
+    form .submit {
+        width: 60px;
+        border: 2px solid #786F68;
+        border-radius: 5px;
+        background-color: #F6D579;
+        font-size: 1.4rem;
+    }
+
+    form .submit:hover {
+        background-color: #F6B579;
+        border-color: #786F78;
+        cursor: pointer;
+    }
+
+/******* FORM *******/
+
+footer {
+    grid-area: footer;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: .5rem 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+.logout {
+    color: #F3C853;
+    font-size: 1rem;
+}
+.logout:hover {
+    color: #EFB61A;
+}
+
+
+/* Additional Styles */
+
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-1 {
+    height: 40px;
+    width: 80px;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #242423;
+    border-radius: 5px;
+    background-color: #F6D579;
+    color: #242423;
+    font-size: 1.8rem;
+    padding: 3px;
+    text-decoration: none;
+}
+.btn-1:hover {
+    color: #EFB61A;
+}
+
+.btn-2 {
+    height: 40px;
+    width: 80px;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #242423;
+    border-radius: 5px;
+    background-color: #F6D579;
+    font-size: 1.8rem;
+    padding: 3px;
+    color:#F6F5F4;
+    background-color: #333533;
+    text-decoration: none;
+    padding: 3px;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.form-full {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px;
+}
+    .form-full > * {
+        height: 30px;
+        margin: 2px 0;
+        width: 100%;
+    }
+    .form .btn-1 {
+        width: 100%;
+    }
+
+
+.flex-col {
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    justify-content: space space-evenly;
+}
+
+.margin-top-bot {
+    margin: 10px 0 10px 0;
+}
+
+.margin-top-50 {
+    margin-top: auto;
+    margin-bottom: 60px;
+}

@@ -1,6 +1,6 @@
 /* REM */
 html {
-    font: 62.5%; /*1 rem = 10 px */
+    font-size: 62.5%; /*1 rem = 10 px */
 }
 
 
@@ -17,7 +17,7 @@ body {
     height: 100vh;
     max-width: 400px;
     margin: auto;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: #242423;
     background-color: #F6F5F4;
 }
@@ -35,7 +35,7 @@ header {
     margin: 20px 0;
 }
 header h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: italic;
@@ -85,8 +85,8 @@ ul {
 /* Button */
 .todo-button {
     grid-area: button;
-    width: 1rem;
-    height: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 50%;
     border: 2px solid #786F68;
     background-color: #F6F5F4;
@@ -101,10 +101,14 @@ ul {
 /* TODO Name */
 .todo {
     grid-area: todo;
+    font-size: 1.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .todo-assignment {
     grid-area: assignment;
-    font-size: .8rem;
+    font-size: 1.2rem;
     justify-self: end;
     margin-right: 12px;
     color: #8F857D;
@@ -180,18 +184,30 @@ ul {
 
 /******* FOOTER *******/
 footer {
+    width: 100%;
     grid-area: footer;
     align-self: center;
     justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     margin: .5rem 0;
     position: fixed;
     bottom: 0;
-    z-index: 1;
+    font-family: "Roboto", sans-serif;
 }
-.logout {
-    color: #F3C853;
-    font-size: 1rem;
-}
-.logout:hover {
-    color: #EFB61A;
-}
+    footer a {
+        height: 100%;
+        border: 2px solid #242423;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        padding: 3px;
+        color:#F6F5F4;
+        background-color: #333533;
+        text-decoration: none;
+    }
+    footer a:hover {
+        background-color: #F6B579;
+        border-color: #786F78;
+        cursor: pointer;
+    }
