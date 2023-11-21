@@ -203,6 +203,7 @@ ul {
 /******* FOOTER *******/
 footer {
     width: 100%;
+    max-width: 40rem;
     grid-area: footer;
     align-self: center;
     justify-self: center;
@@ -213,6 +214,7 @@ footer {
     position: fixed;
     bottom: 0;
     font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
 }
     footer a {
         height: 100%;

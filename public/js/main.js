@@ -92,3 +92,12 @@ async function markIncomplete(){
         console.log(err)
     }
 }
+
+// On window content loaded
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    const todoInput = document.querySelector('.todo-input');
+    if (todoInput) {
+        todoInput.focus();
+    }
+});
