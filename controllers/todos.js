@@ -8,7 +8,8 @@ module.exports = {
         console.log(req.user)
         const passKey =  uuidv4();
         try{
-            const todoItems = await Todo.find({adminId:req.user.adminId})
+            let todoItems = await Todo.find({adminId:req.user.adminId})
+            todoItems = todoItems.sort((a, b) => a.completed - b.completed)
             const itemsLeft = await Todo.countDocuments({assignedToId:req.user.id,completed: false})
             const teamUsers = await SubUser.find({adminId: req.user.adminId})
             const adminUser = await User.findById(req.user.adminId)
